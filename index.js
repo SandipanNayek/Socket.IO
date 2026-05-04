@@ -8,9 +8,24 @@ const io = new Server(server)
 
 // Handle socket connections
 
-io.on('connection' , (socket) => {
+io.on('connection', (socket) => {
+
+    socket.on('join', (username) => {
+        socket.username = username
+    })
+
+    
     socket.on('chatMessage', (data) => {
-        io.emit('message' , data)
+        io.emit('message', {
+            user: socket.username,   
+            text: data.text,
+            time: data.time
+        })
+    })
+
+    
+    socket.on('typing', () => {
+        socket.broadcast.emit('typing', socket.username)
     })
 })
 

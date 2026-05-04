@@ -46,7 +46,7 @@ socket.on('message',(data)=>{
 const msg=document.createElement('div');
 msg.classList.add('msg');
 msg.classList.add(data.user===username?'me':'other');
-msg.innerHTML=`<div>${data.text}</div><div class="time">${data.time}</div>`;
+msg.innerHTML = `<div><b>${data.user}</b>: ${data.text}</div><div class="time">${data.time}</div>`;
 messagesDiv.appendChild(msg);
 messagesDiv.scrollTop=messagesDiv.scrollHeight;
 });
