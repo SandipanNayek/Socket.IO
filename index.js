@@ -10,9 +10,7 @@ const io = new Server(server)
 
 io.on('connection' , (socket) => {
     socket.on('chatMessage', (data) => {
-        console.log('Received message:', data)
-        socket.broadcast.emit('chatMessage', data) // Broadcast the message to all other clients
-
+        io.emit('message' , data)
     })
 })
 
